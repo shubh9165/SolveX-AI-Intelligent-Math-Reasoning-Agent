@@ -8,8 +8,8 @@ from langchain_classic.chains.llm import LLMChain
 from langchain_classic.agents import create_react_agent,AgentExecutor
 from langchain_classic.callbacks import StreamlitCallbackHandler
 import numexpr as ne
-###
 
+#
 
 ## Set upi the Stramlit app
 st.set_page_config(page_title="SolveX AI: Intelligent Math & Reasoning Agent",page_icon="🧮")
