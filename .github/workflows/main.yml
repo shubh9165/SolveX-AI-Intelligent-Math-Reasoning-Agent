@@ -1,4 +1,5 @@
 name: Sync to Hugging Face hub
+
 on:
   push:
     branches: [main]
@@ -7,12 +8,20 @@ on:
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          lfs: true
-      - name: Push to hub
+          fetch-depth: 0   # IMPORTANT
+
+      - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://shubhpatel91:$HF_TOKEN@huggingface.co/spaces/shubhpatel91/Solve_X main --force
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "github-actions"
+
+          git remote add hf https://shubhpatel91:$HF_TOKEN@huggingface.co/spaces/shubhpatel91/Solve_X
+
+          git push hf main --force
